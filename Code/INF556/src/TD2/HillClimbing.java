@@ -135,6 +135,8 @@ public class HillClimbing {
 	
 	public static void main (String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
+		String currentPath = "/Users/wq/Documents/GitHub/Topological-Data-Analysis/Code/INF556/src/TD2/";
+		
 		// parameters for test.xy
 //		String filename = "test.xy";
 //		int kDensity = 10;
@@ -152,6 +154,8 @@ public class HillClimbing {
 //		int kDensity = 100;
 //		int kGraph = 30;
 //		double tau = 0.03;
+		
+		filename = currentPath + filename;
 		
 		HillClimbing HC = new HillClimbing();
 		
