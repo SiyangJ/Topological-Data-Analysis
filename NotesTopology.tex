@@ -1,0 +1,53 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+
+\section{Basics}
+\paragraph{Topological space:} defined as a set of points, along with a set of neighborhoods.\\
+Satisfy a set of axioms relating the points and the neighborhood.\\
+Motivation: most general notion of a mathematical space that allows for \\
+\begin{itemize}
+	\item continuity, 
+	\item connectedness,
+	\item convergence
+\end{itemize}
+Extension: manifolds, metric spaces, etc\\
+Commonly used: defined in terms of open sets.\\
+More intuitive: neighborhoods.\\
+
+$X$ a set, together with $\mathbf{N}:X\mapsto 2^{2^{X}}$, $N\in\mathbf{N}(x)$ is a neighborhood of $x$, satisfying
+\begin{enumerate}
+	\item Point in its own neighborhood;
+	\item Superset of neighborhood is a neighborhood, $N\subseteq M\implies M\in\mathbf{N}(x)$;
+	\item Intersection of neighborhoods is a neighborhood, $\forall N,M\in\mathbf{N}(x),N\cap M\in				  \mathbf{N}(x)$
+	\item $\forall N\in\mathbf{N}(x)\exists M,s.t. y\in M\implies N\in\mathbf{N}(y)$
+\end{enumerate}
+
+Open sets: $x\in U\implies U\in\mathbf{N}(x)$\\
+\\
+Equivalent definition with respect to open sets:\\
+$(X,\tau),\tau\subseteq 2^{2^{X}}$, satisfying:
+\begin{enumerate}
+	\item $\o,X\subseteq \tau$
+	\item $N_{i}\in\tau,\bigcup_{i}N_{i}\in\tau$
+	\item $N_{i}\in\tau,\bigcap_{i}N_{i}\in\tau,i$ finite
+\end{enumerate}
+These are called open sets.\\
+\\
+\paragraph{Continuous:}the inverse image of every open set is an open set.
+
+\paragraph{Homotopy:}\\
+Intuitively from the idea of continuous deformation; is strictly weaker than homeomorphism.
+
+\section{Homology}
+Intuitive view:\\
+\paragraph{Path:} continuous map $[0,1]\mapsto X$; $x\sim y$ if $\gamma(0)=x,\gamma(1)=y$.\\
+This is clearly an equivalence relation. Therefore, the path connected components of $X$ are equivalence classes under $\sim$.
+\subsection{Simplicial Complexes}
+General idea is that simplicial complexes extend the notion of graph to include higher dimensional components in it.
+
+
+\end{document}
