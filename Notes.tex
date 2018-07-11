@@ -1,0 +1,84 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+
+\begin{document}
+
+\section{TODO List}
+\subsection{Classic Dimensionality Reduction}
+\begin{enumerate}
+	\item Learn about the following:
+	\begin{enumerate}
+		\item PCA
+		\item MDS
+		\item isomap
+	\end{enumerate}
+	\item Maybe need to implement some of them
+	\item Know the difference from a practical aspect
+\end{enumerate}
+\subsection{Clustering}
+\begin{enumerate}
+	\item Need to learn about the different approaches 
+	\begin{enumerate}
+		\item Variational
+		\item Spectral
+		\item Hierarchical
+		\item Density thresholding
+		\item Mode seeking
+		\item Valley Seeking
+	\end{enumerate}
+	\item Need to know the specific applications
+	\item Need to delve into one of them to see if possible for improvement
+	\item Mathematical details about Mode Seeking
+	\begin{enumerate}
+		\item Hypotheses on the function of $f$ and estimator $\hat{f}$
+		\item Exact conclusions about the prominence gap.
+		\item How to specify prominence parameter $\tau$
+		\item Algorithm details
+	\end{enumerate}
+\end{enumerate}
+
+\section{Clustering}
+Point cloud (with coordinates)\\
+
+Distance / dissimilarity matrix\\
+
+Note: this seems to be a different idea of the distance function used in TDA, which is called lens in that context.\\
+
+Barcode \textrightarrow merge tree \textrightarrow dendrogram
+
+\subsection{Mode Seeking Paradigm}
+Problems:
+\begin{enumerate}
+	\item Noisy estimator
+	\item Neighborhood graph
+\end{enumerate}
+Solutions:
+\begin{enumerate}
+	\item Be proactive: smooth
+	\item Be reactive: merge clusters after clustering\\
+		  This leads to "topological persistence"
+\end{enumerate}
+
+Persistence for Model Seeking:\\
+Probability density function $f$\\
+\begin{itemize}
+	\item Nested family (filtration) of of inverse images, or superlevel-sets $f^{-1}([t,+\infty))$ for 			  $t$ from $+\infty$ to $-\infty$
+	\item Track evolution of "topology"
+\end{itemize}
+Similar stability theorem.\\
+Seems to have relation with Morse theory. "If $f$ is Morse, then..."
+
+\section{Topological Persistence}
+Persistence diagram shows the "persistence" of the topological features.
+Slight perturbation causes slight difference in persistence diagrams.
+
+
+\section{Mapper}
+
+
+
+\end{document}
