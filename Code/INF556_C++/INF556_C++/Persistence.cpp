@@ -257,15 +257,6 @@ barcode compute_barcode(boundary_matrix B, vector<simplex>* F){
 };
 
 
-
-
-
-
-
-
-
-
-
 barcode compute_barcode_sparse(boundary_matrix B, vector<simplex>* F){
     
     // initialization

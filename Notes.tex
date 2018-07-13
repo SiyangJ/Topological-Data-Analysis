@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -6,6 +6,45 @@
 \usepackage{textcomp}
 
 \begin{document}
+
+\section{List of works}
+\subsection{Introduction and Summary}
+\begin{enumerate}
+	\item \cite{Otter2017} Roadmap for computation of PH, 2017\\
+		  Thorough review of computation and some theory of PH.
+\end{enumerate}
+\subsection{Original work}
+\subsubsection{TDA}
+\subsubsection{Persistent Homology}
+\subsection{Applications}
+
+\section{Questions}
+\subsection{Theory}
+\subsubsection{Homology}
+\begin{enumerate}
+	\item What other "features" can be revealed by homology?\\
+		  It seems that although Homology groups are informational\\
+		  Betti numbers, which are the basis for barcode and other diagrams, do not tell us anything more that holes and voids.\\
+		  
+\end{enumerate}
+\subsection{Computation}
+\begin{enumerate}
+	\item What is the bottleneck of the general computation process?
+	\begin{enumerate}
+		\item Is it the same for all the libraries?
+		\item Possible optimization? Meaningful?
+	\end{enumerate}	  
+	\item What is the bottleneck for a specific data type?
+	\item For a specific purpose?
+\end{enumerate}
+\subsection{Application}
+\begin{enumerate}
+	\item Search for a problem?\\
+		  It seems that the methods is a not problem-solving-oriented.\\
+		  But rather developed from math intuition.\\
+		  Therefore seems bound to be less powerful than DL, which is clearly developed to solve problems.\\
+		  
+\end{enumerate}
 
 \section{TODO List}
 \subsection{Classic Dimensionality Reduction}
@@ -131,7 +170,31 @@ Standard Algorithm:
 
 \section{Mapper}
 
+\section{Why TDA?}
+\subsection{Theoretically well understood}
+\subsection{Qualitative data features}
+\subsection{Computable via linear algebra}
+\subsection{Robust under perturbation}
 
+\section{Possible Topics and Data Sets to Try}
+\begin{enumerate}
+	\item Sensor network coverage.
+	\item Proteins.
+	\item 3-dimensional structure of DNA
+	\item Robotics
+	\item Signals in images
+	\item Periodicity in time series
+	\item Cancer
+	\item Phylogenetics
+	\item Natural images
+	\item Self-similarity in geometry
+	\item Materials science
+	\item Financial networks
+	\item Neuroscience
+	\item Other networks
+	\item Time-series output of dynamical systems
+	\item Natural language analysis
+\end{enumerate}
 
 \newpage
 \bibliography{Reference}
