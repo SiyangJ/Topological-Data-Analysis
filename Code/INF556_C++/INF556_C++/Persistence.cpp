@@ -125,15 +125,20 @@ std::ostream& operator<<(std::ostream& os, const vertices& v) {
     return os;
 }
 
+//***********************************************************************
+// Core Algorithm.
+
 
 boundary_matrix compute_boundary_matrix(vector<simplex>* F, bool sparse){
     
-    boundary_matrix B; B.clear(); int num_simplex = (*F).size();
+    boundary_matrix B; B.clear();
+    int num_simplex = (*F).size();
     
     // sort filtration by function values and dimensions
     sort((*F).begin(), (*F).end(), comp_filter);
     
     // re-sort now by lexicographical order
+    // TODO: Very inefficient
     map<vertices,int> lexico;
     for (int i=0; i<F->size(); i++)
         lexico.insert(pair<vertices,int> ((*F)[i].vert, i));
@@ -141,7 +146,9 @@ boundary_matrix compute_boundary_matrix(vector<simplex>* F, bool sparse){
     // create sparse matrix
     if(sparse){
         for (int i = 0; i < num_simplex; ++i ){
-            boundary h; vertices b = (*F)[i].vert; int num_simplex_bound = b.size();
+            boundary h;
+            vertices b = (*F)[i].vert;
+            int num_simplex_bound = b.size();
             // compute simplices of codimension 1
             for(int j = 0; j < num_simplex_bound; j++){
                 vertices bb = b;
@@ -166,7 +173,10 @@ boundary_matrix compute_boundary_matrix(vector<simplex>* F, bool sparse){
     // create full matrix
     else{
         for (int i = 0; i < num_simplex; ++i ){
-            boundary h; vertices b = (*F)[i].vert; int num_simplex_bound = b.size(); boundary b2(num_simplex, 0);
+            boundary h;
+            vertices b = (*F)[i].vert;
+            int num_simplex_bound = b.size();
+            boundary b2(num_simplex, 0);
             // compute simplices of codimension 1
             for(int j = 0; j < num_simplex_bound; j++){
                 vertices bb = b;
@@ -191,12 +201,8 @@ boundary_matrix compute_boundary_matrix(vector<simplex>* F, bool sparse){
 };
 
 
-
-
-
-
-
-
+//***********************************************************************
+// Core Algorithm.
 
 barcode compute_barcode(boundary_matrix B, vector<simplex>* F){
     

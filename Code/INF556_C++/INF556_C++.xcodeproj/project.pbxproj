@@ -10,6 +10,7 @@
 		14204A1320F8CE3200ACA6E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14204A1220F8CE3200ACA6E2 /* main.cpp */; };
 		14204A1B20F8DA4200ACA6E2 /* Read_Filtration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14204A1920F8DA4200ACA6E2 /* Read_Filtration.cpp */; };
 		14204A1D20F9167C00ACA6E2 /* Persistence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14204A1C20F9167C00ACA6E2 /* Persistence.cpp */; };
+		14204A1F20F9212100ACA6E2 /* barcode2vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14204A1E20F9212100ACA6E2 /* barcode2vector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,7 @@
 		14204A1920F8DA4200ACA6E2 /* Read_Filtration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_Filtration.cpp; sourceTree = "<group>"; };
 		14204A1A20F8DA4200ACA6E2 /* Read_Filtration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Read_Filtration.hpp; sourceTree = "<group>"; };
 		14204A1C20F9167C00ACA6E2 /* Persistence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Persistence.cpp; sourceTree = "<group>"; };
+		14204A1E20F9212100ACA6E2 /* barcode2vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = barcode2vector.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				14204A1920F8DA4200ACA6E2 /* Read_Filtration.cpp */,
 				14204A1A20F8DA4200ACA6E2 /* Read_Filtration.hpp */,
 				14204A1C20F9167C00ACA6E2 /* Persistence.cpp */,
+				14204A1E20F9212100ACA6E2 /* barcode2vector.cpp */,
 			);
 			path = "INF556_C++";
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14204A1F20F9212100ACA6E2 /* barcode2vector.cpp in Sources */,
 				14204A1320F8CE3200ACA6E2 /* main.cpp in Sources */,
 				14204A1B20F8DA4200ACA6E2 /* Read_Filtration.cpp in Sources */,
 				14204A1D20F9167C00ACA6E2 /* Persistence.cpp in Sources */,
