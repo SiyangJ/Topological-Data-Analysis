@@ -51,6 +51,71 @@ General idea is that simplicial complexes extend the notion of graph to include 
 Turn simplicial complexes to topological spaces: "embed" it into Euclidean space.\\
 Embedding: map points to coordinates and all points affinely independent.\\
 Induced map: $\hat{f}:K\to 2^{\mathbb{R}^d},\{ v_0,v_1,...,v_r\}\mapsto Conv(f(v_0),...,f(v_r))$\\
-All embeddings $f:K\to\mathbb{R}^d,g:K\to\mathbb{R}^{d'}$, $\hat{f}$ and $\hat{g}$ are homeomorphic.
+All embeddings $f:K\to\mathbb{R}^d,g:K\to\mathbb{R}^{d'}$, $\hat{f}$ and $\hat{g}$ are homeomorphic.\\
+Underlying space, $|K|$, the image of $K$ through embedding, unique up to homeomorphism.\\
+Triangulability: $X$ is triangulable if $\exists K,h:X\to|K|$, $h$ is homeomorphism.\\
+Simplicial map: combinatorial equivalence of continuous map.\\
+Topological realization of a map: simplicial $f:K\to L$ induces continuous $|f|:|K|\to|L|$\\
+Reverse is not necessarily true.\\
+Simplicial Approximation: continuous $f:|K|\to|L|$ is homotopic to $|f'|:|K|\to|L|$, where $f':K'\to L$, for some simplicial subdivision $K'$ of $K$.\\
+Intuition: by dividing the simplicial complex sufficiently many times, we can approximate the topological space.
+\subsection{Simplicial Homology}
+Orientation: Ordering of vertices, unique up to even permutation, negative by odd permutation.
+\subsubsection{Chains}
+$K$ finite simplicial complex and $k$ a fixed field. Given $r\in\mathbb{N}$, we are interested in the $k-$linear combinations (formal sums) of $r-$simplices in $K$.\\
+The linear space of all the formal sums for each $r$ is a chain space of $k-$chains.\\
+Note: Seems that the field $k$ can be relaxed to a ring. Can study later.\\
+\subsubsection{Boundary Operator}
+Remove one vertex from a simplex, we get a face of the simplex. The linear combination together with interchanging orientation is the boundary.\\
+$\partial_r:C_r(K,k)\to C_{r-1}(K,k)$\\
+$[v_0,...,v_r]\mapsto\sum_{j=0}^{r}(-1)^{j}[v_0,...\hat{v_j}...,v_r]$\\
+Clearly $\partial_r$ is distributive.\\
+Note:$\partial^2=0$, and therefore is nilpotent. (Actually it's $\partial_r\circ\partial_{r+1}=0$.
+\subsubsection{Homology Groups}
+Important motivation: want to find "cycles modulo the boundaries".\\
+Note: need to further think about this.\\
+r-cycles: $Z_r(K,k):=\text{ker}\partial$\\
+r-boundaries: $Z_r(K,k):=\text{im}\partial_{r+1}$\\
+Homology group: $Z_r(K,k)/Z_r(K,k)$\\
+\subsubsection{Algorithm for Homology}
+Since it's a vector space, it's isomorphic to $k^{\beta_r}$,\\
+Note: when relaxed to ring, it's a module, and therefore we still have the fundamental theorem for modules to decompose to a torsion part and a torsion-free part. Still have some kind of $\beta_r$.\\
+Note: everything is linear space / linear transformation.\\
+Matrix form $M_r$ of $\partial_r$ for each $r$:\\
+$\#K_r$ columns and $\#K_{r-1}$ rows, $\beta_r=\#K_r-\text{rank}M_r-\text{rank}M_{r+1}$, just compute ranks to get the dimension, which I have learned and don't want to go into details.\\
+\subsubsection{Morphisms}
+Operator on spaces: $H_r:K\mapsto H_r(K,k)$, which we want to extend to maps as well.\\
+Idea of a functor? Some category stuff?\\
+Chain level: simplicial map induces a chain map. Details omitted.\\
+The chain map commutes with boundary operator.\\
+Functoriality:\\
+\subsection{From simplicial complexes to topological spaces}
+Theorem: $X$ triangulable, then, $\forall K,L,H_r(K,k)\simeq H_r(L,k)$.\\
+Conclusion: homology groups of triangulable spaces, and the morphisms between them, are uniquely defined, for different ways of triangulation. Moreover, morphisms are invariant under homotopy.\\
+Corollary: $X\sim Y\implies H_r(X,k)\simeq H_r(Y,k)$.\\
+However, homology does not completely characterize the topology of a space. Thus still much weaker than homeomorphism.
+\section{Exercise}
+Compute the homology groups, and in particular, the Betti numbers.\\
+Often we only want the Betti numbers, so choose the simplest field, $\mathbb{Z}_2$, whereby we can ignore the orientation.\\
+The key is
+\begin{enumerate}
+	\item triangulation
+	\item identify the structures
+	\item computationally, matrix and linear algebra
+\end{enumerate}
+Questions:
+\begin{enumerate}
+	\item Circle, $\mathbb{S}^1:\beta_0=1,\beta_1=1$
+	\item Disk, $\mathbb{B}^2:\beta_0=1,\beta_1=1,\beta_2=0,etc$, same homology groups as a single point. In fact, homotopy equivalent to a point.
+	\item Cylinder, $\mathbb{S}^1\times [0,1]:\beta_0=1,\beta_1=1,\beta_2=0$, homotopy equivalent to a circle.
+	\item Sphere, $\mathbb{S}^2:\beta_0=1,\beta_1=0,\beta_2=1$
+	\item Ball, $\mathbb{B}^3:\beta_0=1,\beta_1=0,\beta_2=0,etc$, homotopy equivalent to a single point.
+	\item Torus, see online for triangulation, $\mathbb{T}:\beta_0=1,\beta_1=2,\beta_2=1,\beta_3=0$
+	\item Homology for sphere $\mathbb{S}^d$, $\beta_0=1,\beta_i=0,\beta_d=1$
+\end{enumerate}
+Brouwer's fixed point theorem:\\
+$\forall$continuous $f:\mathbb{B}^2\to\mathbb{B}^2,\exists p\in\mathbb{B}^2,f(p)=p$.\\
+Hairy ball theorem:\\
+For $d$ even, $\forall$continuous tangent vector field $V:\mathbb{S}^d\to\mathbb{R}^d,\exists p\in\mathbb{S}^d,$ s.t. $V(p)=0$.\\
 
 \end{document}
