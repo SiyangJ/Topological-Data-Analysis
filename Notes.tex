@@ -40,6 +40,14 @@
 		\item Algorithm details
 	\end{enumerate}
 \end{enumerate}
+\subsubsection{Persistent Homology}
+\begin{enumerate}
+	\item Need to delve into the details of the PH algorithms
+	\begin{enumerate}
+		\item Like reading off the intervals.
+		\item Different implementations.
+	\end{enumerate}
+\end{enumerate}
 
 \section{Clustering}
 Point cloud (with coordinates)\\
@@ -84,9 +92,38 @@ Definition: $h:X\mapsto Y$ is a homeomorphism if there exists a map $h^{-1}:Y\ma
 \end{itemize}
 
 \section{Computation of Persistence Homology}
+This part is largely cited from \cite{Otter2017}.\\
+How to keep track of how one feature "merges" to another?\\
+Boundary matrix: the matrix representation of boundary operator.\\
+We also need a total ordering compatible with the "filtration" in the following sense:
+\begin{itemize}
+	\item a face of a simplex precedes the simplex.
+	\item a simplex in $K_i$ precedes simplices in $K_j$ for $j>i$, and not in $K_i$.
+	\begin{itemize}
+		\item this essentially means that we place the simplices by the order of "appearing".
+	\end{itemize}
+\end{itemize}
+
+Standard Algorithm:
+\begin{itemize}
+	\item Form the boundary matrix from the ordering.
+	\item Reduction, which is essentially Gaussian elimination.
+	\item Reading off intervals.
+	\begin{enumerate}
+		\item some details to do.
+		\item degree: $\text{dg}(\sigma)=\text{smallest number }l\text{ s.t.}\sigma\in K_l$
+		\item pair $(\sigma_i,\sigma_j)$ gives $[\text{dg}(\sigma_i),\text(\sigma_j))$
+		\item unpaired extends to infinity.
+	\end{enumerate}
+	\item 
+\end{itemize}
 
 \section{Mapper}
 
 
+
+\newpage
+\bibliography{Reference}
+\bibliographystyle{ieeetr}
 
 \end{document}
