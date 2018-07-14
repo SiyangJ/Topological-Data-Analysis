@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Notes.aux
 The style file: ieeetr.bst
 Database file #1: Reference.bib
-You've used 1 entry,
+Warning--can't use both author and editor fields in Wagner2012
+You've used 14 entries,
             1876 wiz_defined-function locations,
-            486 strings with 3665 characters,
-and the built_in function-call counts, 266 in all, are:
-= -- 20
-> -- 17
+            591 strings with 6205 characters,
+and the built_in function-call counts, 3995 in all, are:
+= -- 396
+> -- 162
 < -- 0
-+ -- 6
-- -- 5
-* -- 24
-:= -- 51
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 1
++ -- 58
+- -- 44
+* -- 303
+:= -- 576
+add.period$ -- 18
+call.type$ -- 14
+change.case$ -- 12
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 12
-empty$ -- 19
-format.name$ -- 5
-if$ -- 58
+cite$ -- 15
+duplicate$ -- 198
+empty$ -- 367
+format.name$ -- 44
+if$ -- 967
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 6
-num.names$ -- 1
-pop$ -- 2
+int.to.str$ -- 14
+missing$ -- 16
+newline$ -- 49
+num.names$ -- 18
+pop$ -- 36
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 8
+skip$ -- 135
 stack$ -- 0
-substring$ -- 4
-swap$ -- 5
+substring$ -- 264
+swap$ -- 84
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 12
+warning$ -- 1
+while$ -- 42
+width$ -- 16
+write$ -- 145
+(There was 1 warning)

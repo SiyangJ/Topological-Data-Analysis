@@ -1,8 +1,72 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Otter2017}
 N.~Otter, M.~A. Porter, U.~Tillmann, P.~Grindrod, and H.~A. Harrington, ``A
   roadmap for the computation of persistent homology,'' {\em EPJ Data Science},
   vol.~6, p.~17, Aug 2017.
+
+\bibitem{Carlsson2009}
+G.~Carlsson, ``Topology and data,'' {\em Bull. Amer. Math. Soc. (N.S.)},
+  vol.~46, no.~2, pp.~255--308, 2009.
+
+\bibitem{Singh2007}
+G.~Singh, F.~Memoli, and G.~Carlsson, ``{Topological Methods for the Analysis
+  of High Dimensional Data Sets and 3D Object Recognition},'' in {\em
+  Eurographics Symposium on Point-Based Graphics} (M.~Botsch, R.~Pajarola,
+  B.~Chen, and M.~Zwicker, eds.), The Eurographics Association, 2007.
+
+\bibitem{Carlsson2008}
+G.~Carlsson, T.~Ishkhanov, V.~de~Silva, and A.~Zomorodian, ``On the local
+  behavior of spaces of natural images,'' {\em Int. J. Comput. Vis.}, vol.~76,
+  no.~1, pp.~1--12, 2008.
+
+\bibitem{Mischaikow2013}
+K.~Mischaikow and V.~Nanda, ``Morse theory for filtrations and efficient
+  computation of persistent homology,'' {\em Discrete {\&} Computational
+  Geometry}, vol.~50, pp.~330--353, Sep 2013.
+
+\bibitem{Bubenik2007}
+P.~Bubenik and P.~T. Kim, ``A statistical approach to persistent homology,''
+  {\em Homology Homotopy Appl.}, vol.~9, no.~2, pp.~337--362, 2007.
+
+\bibitem{Wagner2012}
+H.~Wagner, C.~Chen, and E.~Vu{\c{c}}ini, {\em Efficient Computation of
+  Persistent Homology for Cubical Data}, pp.~91--106.
+\newblock Berlin, Heidelberg: Springer Berlin Heidelberg, 2012.
+
+\bibitem{Kaczynski2004}
+T.~Kaczynski, K.~Mischaikow, and M.~Mrozek, {\em Computational homology},
+  vol.~157 of {\em Applied Mathematical Sciences}.
+\newblock Springer-Verlag, New York, 2004.
+
+\bibitem{Javaplex}
+A.~Tausz, M.~Vejdemo-Johansson, and H.~Adams, ``Java{P}lex: {A} research
+  software package for persistent (co)homology,'' in {\em Proceedings of ICMS
+  2014} (H.~Hong and C.~Yap, eds.), Lecture Notes in Computer Science 8592,
+  pp.~129--136, 2014.
+\newblock Software available at
+  \url{http://appliedtopology.github.io/javaplex/}.
+
+\bibitem{Fasy2014}
+B.~T. Fasy, J.~Kim, F.~Lecci, and C.~Maria, ``Introduction to the {R} package
+  {TDA},'' {\em CoRR}, vol.~abs/1411.1830, 2014.
+
+\bibitem{Bubenik2017}
+P.~Bubenik and P.~Dłotko, ``A persistence landscapes toolbox for topological
+  statistics,'' {\em Journal of Symbolic Computation}, vol.~78, pp.~91 -- 114,
+  2017.
+\newblock Algorithms and Software for Computational Topology.
+
+\bibitem{Barmak2012}
+J.~A. Barmak and E.~G. Minian, ``Strong homotopy types, nerves and collapses,''
+  {\em Discrete {\&} Computational Geometry}, vol.~47, pp.~301--328, Mar 2012.
+
+\bibitem{Bubenik2015}
+P.~Bubenik, ``Statistical topological data analysis using persistence
+  landscapes,'' {\em J. Mach. Learn. Res.}, vol.~16, pp.~77--102, Jan. 2015.
+
+\bibitem{Adcock2013}
+A.~{Adcock}, E.~{Carlsson}, and G.~{Carlsson}, ``{The Ring of Algebraic
+  Functions on Persistence Bar Codes},'' {\em ArXiv e-prints}, Apr. 2013.
 
 \end{thebibliography}

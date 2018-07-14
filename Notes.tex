@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{textcomp}
+\usepackage{url}
 
 \begin{document}
 
@@ -12,12 +13,52 @@
 \begin{enumerate}
 	\item \cite{Otter2017} Roadmap for computation of PH, 2017\\
 		  Thorough review of computation and some theory of PH.
+
 \end{enumerate}
 \subsection{Original work}
 \subsubsection{TDA}
+\begin{enumerate}
+	\item \cite{Carlsson2009} Foundation for TDA\\
+		  Discusses why topology and functoriality are essential for data analysis.
+	\item \cite{Singh2007} Mapper Algorithm
+	\item \cite{Carlsson2008} The Natural Image paper.
+\end{enumerate}
 \subsubsection{Persistent Homology}
+\begin{enumerate}
+	\item \cite{Mischaikow2013} Discrete Morse theory
+	\item \cite{Bubenik2007} Statistical approach to persistent homology
+\end{enumerate}
+\subsubsection{Computation}
+\begin{enumerate}
+	\item \cite{Wagner2012} Computation of PH for cubical data.\\
+		  Found in \cite{Otter2017}
+	\item \cite{Kaczynski2004} Computational homology\\
+	talked about cubical complexes and other complexes
+	\item \cite{Javaplex} Javaplex
+	\item \cite{Fasy2014} Intro to R TDA
+	\item \cite{Bubenik2017} Intro of persistence landscapes w/ algorithms.
+\end{enumerate}
 \subsection{Applications}
+\subsubsection{Benchmarking}
+\begin{enumerate}
+	\item 
+\end{enumerate}
 
+\section{Current Challenges}
+\subsection{From Data to Filtration}
+Which complex is best suited for what?
+\subsection{Statistical Interpretation}
+Two major challenges are described in \cite{Otter2017}.
+\begin{enumerate}
+	\item Quantitatively assessing the quality of the barcodes.\\
+		  Specifically, one cannot just say I'll disregard the "shorter" ones, and the left are the features.\\
+		  How short? What about the variation in length?\\
+	\item The space of barcodes lacks geometric properties to define basic concepts\\
+		  Mean, median, etc.
+\end{enumerate}
+\subsubsection{Persistence Diagram}
+Few tools can be used in applications for computation of Wasserstein / bottleneck distance between persistence diagrams.\\
+Some existing ones include: Dionysus, Hera, TDA Package.
 \section{Questions}
 \subsection{Theory}
 \subsubsection{Homology}
@@ -47,6 +88,10 @@
 \end{enumerate}
 
 \section{TODO List}
+\subsection{General Learning Plan}
+\begin{enumerate}
+	\item Need to read the roadmap\cite{Otter2017} more details.
+\end{enumerate}
 \subsection{Classic Dimensionality Reduction}
 \begin{enumerate}
 	\item Learn about the following:
@@ -79,7 +124,18 @@
 		\item Algorithm details
 	\end{enumerate}
 \end{enumerate}
-\subsubsection{Persistent Homology}
+\subsection{Construct Complex}
+\begin{enumerate}
+	\item Need to learn about the various complexes, esp. their advantages / disadvantages for applications.
+	\begin{enumerate}
+		\item \v Cech
+		\item VR
+		\item Delaunay
+		\item Alpha
+		\item Witness
+	\end{enumerate}
+\end{enumerate}
+\subsection{Persistent Homology}
 \begin{enumerate}
 	\item How to compute a filtration from point cloud?
 	\begin{enumerate}
@@ -95,6 +151,7 @@
 		\item Like reading off the intervals.
 		\item Different implementations.
 	\end{enumerate}
+	\item ALL the above pretty much FINISHED.
 \end{enumerate}
 
 \section{Clustering}
@@ -139,7 +196,23 @@ Definition: $h:X\mapsto Y$ is a homeomorphism if there exists a map $h^{-1}:Y\ma
 	\item
 \end{itemize}
 
+\section{How to deal with data}
+\subsection{Networks}
+Essentially 1-dimensional simplicial complex. Filter by weight.\\
+Construct higher dimensional simplices. Ex: WRCF.\\
+Mapping the nodes to points in finite metric space.
+\subsection{Digital Images}
+Natural cubical structure. Cubical complexes.\\
+$c$ color variables, $N$ pixels/voxels, then $c\times N$-dimensional space, equipped a distance function to form a finite metric space.
 
+\section{Construct (Simplicial) Complex}
+\subsubsection{Various Ways}
+\subsubsection{Reduction Techniques}
+Heuristic ways to reduce the size of a filtered complex while keeping the PH unchanged.
+\paragraph{Discrete Morse Theory}
+Refer to \cite{Mischaikow2013} for theoretic details. NP complete, thus relies on heuristics to find partial matching to reduce the size.
+\paragraph{Strong Collapses}
+Refer to \cite{Barmak2012} for details.
 
 \section{Computation of Persistence Homology}
 This part is largely cited from \cite{Otter2017}.\\
@@ -154,7 +227,7 @@ We also need a total ordering compatible with the "filtration" in the following 
 	\end{itemize}
 \end{itemize}
 
-Standard Algorithm:
+\subsection{Standard Algorithm}
 \begin{itemize}
 	\item Form the boundary matrix from the ordering.
 	\item Reduction, which is essentially Gaussian elimination.
@@ -168,6 +241,30 @@ Standard Algorithm:
 	\item 
 \end{itemize}
 
+\subsection{Complexity}
+In the worst case, which does exist, the algorithm has cubic complexity. Note that when sparse, not cubic.
+
+\section{Statistical Interpretation}
+\subsection{Problems}
+\begin{enumerate}
+	\item Compare outputs with null model.\\
+	How to compare the different results?\\
+	How to evaluate the significance of the data?
+	\item Average over multiple realizations of a random model.
+\end{enumerate}
+\subsection{Statistical Analysis}
+Statistical methods for PH addressed first time in \cite{Bubenik2007}. Three approaches.
+\begin{enumerate}
+	\item Topological properties of random simplicial complexes, viewed as null models.
+	\item Properties of a metric space, whose points are persistence diagrams.
+	\item "Features" of persistence diagrams.
+\end{enumerate}
+\subsubsection{Second Approach}
+Key point: define an appropriate distance function between diagrams. The main object is the persistence diagram, which is in some sense isomorphic to a barcode.
+\paragraph{Wasserstein Distance} is a popular way to defined distance. Details skipped.
+\subsubsection{Third Approach}
+Key point: map the space of persistence diagrams to analyzable spaces (e.g. Banach spaces). Persistence landscape\cite{Bubenik2015}, using space of algebraic functions\cite{Adcock2013}, kernalized techniques.
+
 \section{Mapper}
 
 \section{Why TDA?}
@@ -176,7 +273,8 @@ Standard Algorithm:
 \subsection{Computable via linear algebra}
 \subsection{Robust under perturbation}
 
-\section{Possible Topics and Data Sets to Try}
+\section{Application: Possible Topics and Data Sets to Try}
+\subsection{List of fields}
 \begin{enumerate}
 	\item Sensor network coverage.
 	\item Proteins.
@@ -195,6 +293,32 @@ Standard Algorithm:
 	\item Time-series output of dynamical systems
 	\item Natural language analysis
 \end{enumerate}
+\subsection{Important Examples}
+\subsubsection{Digital Image from Otter 17}
+This example comes from \cite{Otter2017}.\\
+Two approaches: Cubical Complexes and //TODO
+\paragraph{Cubical Complexes}
+Instead of simplices, one use cubical complexes to build the topological space.\\
+Sounds like \v Cech?\\
+\begin{enumerate}
+	\item Every pixel is a point, join the adjacent points;
+	\item Color the unit squares and cubes (only unit ones!);
+	\item Label each pixel with grey scale, each edge with the max of point;
+	\item Filter the topology by grey scale values;
+	
+\end{enumerate}
+\subsection{Data Sets}
+\subsection{Choice of Software}
+List of some open source softwares available
+\begin{enumerate}
+	\item Javaplex\cite{Javaplex}
+	\item Dionysus
+	\item DIPHA
+	\item Perseus
+	\item GUDHI
+	\item Ripser, the known best one, according to \cite{Otter2017}
+\end{enumerate}
+
 
 \newpage
 \bibliography{Reference}
