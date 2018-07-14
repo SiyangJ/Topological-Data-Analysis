@@ -4,5 +4,23 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \begin{document}
-•
+\part{Image}
+\section{Segmentation}
+\subsection{Qaiser 2017}
+This paper \cite{Qaiser2017} applies 1) persistent homology to extract features, 2) CNN to classify, and 3) Ensemble Random Forest to tumor segmentation problems.\\
+\subsubsection{Motivation}
+\paragraph{Different Topological Structure} for tumor and normal regions. Specifically, degree of connectivity is different. So quantify these features by PH.
+\subsubsection{Method}
+\paragraph{Overview}
+Use CNN to divide to patches, PH to create PH profiles, use KLD (Kullback-Leibler divergence) as a distance function between the profiles to perform kNN.
+\section{Classification}
+\subsection{Chittajallu 2018}
+This paper \cite{Chittajallu2018} uses persistence landscape and persistence image to train machine learning models.
+\part{3D Object}
+
+\subsection{Bendich 2016}
+\newpage
+\bibliography{Reference}
+\bibliographystyle{ieeetr}
+
 \end{document}

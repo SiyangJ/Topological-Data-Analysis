@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.1}{Things I Have Done}{}% 1
+\BOOKMARK [1][-]{section.2}{Notes}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Simplicial Complexes}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Simplicial Homology}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Chains}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Boundary Operator}{subsection.2.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Homology Groups}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.4}{Algorithm for Homology}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.5}{Morphisms}{subsection.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{From simplicial complexes to topological spaces}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Computation of Persistence Homology}{section.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Standard Algorithm}{subsection.2.4}% 12
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Complexity}{subsection.2.4}% 13
+\BOOKMARK [2][-]{subsection.2.5}{Statistical Interpretation}{section.2}% 14
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Problems}{subsection.2.5}% 15
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Statistical Analysis}{subsection.2.5}% 16
+\BOOKMARK [1][-]{section.3}{Current Challenges}{}% 17
+\BOOKMARK [2][-]{subsection.3.1}{Construction of Filtration}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.2}{Statistical Interpretation}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.3}{Persistence Diagram}{section.3}% 20
+\BOOKMARK [1][-]{section.4}{Plan for Next Week}{}% 21
+\BOOKMARK [1][-]{section.5}{List of Interesting Works}{}% 22
+\BOOKMARK [2][-]{subsection.5.1}{Introduction and Summary}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.2}{TDA}{section.5}% 24
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Persistent Homology}{subsection.5.2}% 25
+\BOOKMARK [2][-]{subsection.5.3}{Computation}{section.5}% 26

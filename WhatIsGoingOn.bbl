@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{Qaiser2017}
+T.~Qaiser, Y.-W. Tsang, D.~Epstein, and N.~Rajpoot, ``Tumor segmentation in
+  whole slide images using persistent homology and deep convolutional
+  features,'' in {\em Medical Image Understanding and Analysis}
+  (M.~Vald{\'e}s~Hern{\'a}ndez and V.~Gonz{\'a}lez-Castro, eds.), (Cham),
+  pp.~320--329, Springer International Publishing, 2017.
+
+\bibitem{Chittajallu2018}
+D.~R. Chittajallu, N.~Siekierski, S.~Lee, S.~Gerber, J.~Beezley, D.~Manthey,
+  D.~Gutman, and L.~Cooper, ``Vectorized persistent homology representations
+  for characterizing glandular architecture in histology images,'' in {\em 2018
+  IEEE 15th International Symposium on Biomedical Imaging (ISBI 2018)},
+  pp.~232--235, April 2018.
+
+\end{thebibliography}

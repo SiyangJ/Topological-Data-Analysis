@@ -1,0 +1,186 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+\title{Week Report 1}
+\begin{document}
+\section{Things I Have Done}
+The major reason I'm interested in TDA (topological data analysis), and, in particular, PH (persistent homology), is that they formalize our intuition about shape, resolution, invariance, and etc. into topological theories. Unlike other popular methodologies like DL (deep learning), with which many people tend to compare TDA, TDA is in some sense explicable and understandable. Besides the sole fact that such understandability itself is already extremely valuable and reassuring, TDA could possibly reveal features and accomplish tasks that are otherwise not achievable through other methodologies like DL.\par
+
+However, one fundamental weakness of TDA is that it is not problem solving oriented. Most methods in DL are designed specifically for solving certain problems. For example, CNN (convolutional neural networks) was designed to simulate human perception and processing of images, and therefore, shows very good performance on image related problems. In contrast, as far as I'm concerned, TDA was not invented for a specific target problem. Thus, to put TDA into application is to find a question to a solution, which, to some, may seem inefficient, dubious, and bound to fail. In fact, I barely found any successful cases of TDA in any industry, except AYASDI, which, according to some unverified sources, has already turned to more mature methods like DL, and rebranded itself as "enterprise AI".\par
+
+Nonetheless, the elegance of the theory, along with the flourishing academic research of the application of TDA to various fields (though far from actual use in industry), provides me with a motivation to learn more about it, and hopefully find a place where it can be naturally and effectively applied. Below is a list of things I have done in the last week. Everything can be found on this Github repository \url{https://github.com/SiyangJ/Topological-Data-Analysis}.
+\begin{enumerate}
+	\item Learned about what TDA is in general, through searching on internet, and in particular, AYASDI's seminars on youtube.
+	\item Substantially learned TDA through course \href{http://www.enseignement.polytechnique.fr/informatique/INF556/}{INF556} given by Steve Oudot, professor at \'Ecole Polytechnique, and research scientist at Inria. In particular, I implemented all the algorithms by myself, and understood their solution algorithm as well. However, I did not delve into the theoretic details of certain certain characterization and proof, for example, the functoriality of homology, and the stable theories of Wasserstein and bottleneck distances.
+	\item TDA is more like a framework than a specific theory. Different approaches in TDA are listed below.
+	\begin{enumerate}
+		\item Mapper algorithm is the core of TDA products of AYASDI. However, it's not open source. Although some open source libraries and softwares do exist, I feel like it's not a good idea to compete with the founders of TDA. Besides, the Mapper algorithm of AYASDI and the related products seem to have very limited application and success. Often, Mapper provides certain insights that still need human interpretation.
+		\item Persistent homology. The most popular and well-studied branch. Various theories on the generation of complexes, function used for filtration, stability of the results, and etc. have been discussed. Moreover, a wide variety of open source libraries are available for the computation. Therefore, my main focus will be PH.
+		\item Euler calculus, cellular sheaves, etc. They are not as popular and as well-established.
+	\end{enumerate}
+	\item Consolidate my understanding through a very useful paper "A roadmap for the computation of persistent homology"\cite{Otter2017}. Together with its references, I basically figured out all the theories I think I need to know, and also acquainted myself with the basic and actual algorithms of PH.
+	\item Read some recent papers of the application of TDA and PH in different fields. Some interesting ones include:
+	\begin{enumerate}
+		\item Tumor segmentation. This 2017 paper \cite{Qaiser2017} applies 1) persistent homology to extract features, 2) CNN to classify, and 3) Ensemble Random Forest to tumor segmentation problems. Specifically, they use CNN to divide each whole-slide image (WSI) to patches, then apply PH to create PH profiles, and finally use KLD (Kullback-Leibler divergence) as a distance function between the profiles to perform $k$-nearest neighbor ($k$NN).
+		\item Classification of histology images. This 2018 paper \cite{Chittajallu2018} uses persistence landscape (PL) and persistence image (PI) to train machine learning models. Persistence image is a very recent development, and it's still under active research. How to provide quantifiable statistical interpretation to PH and its typical representations, like barcode and persistence diagram, has always been a problem. This paper seems to successfully use PI and PL to interpret, and therefore provide further statistical analysis.
+		\item Brain artery tree (3D object). I haven't thoroughly read this one. This 2016 paper \cite{Bendich2016} tries to extract topological features from brain artery trees by PH. They analyze the result with PL and other methods, and draw conclusions on correlation between certain development and age/sex.
+	\end{enumerate}
+\end{enumerate}
+
+\section{Notes}
+In this section, I give some selected notes I took during past week. All the notes are displayed on the Github repository.
+\subsection{Simplicial Complexes}
+General idea is that simplicial complexes extend the notion of graph to include higher dimensional components in it.\\
+Turn simplicial complexes to topological spaces: "embed" it into Euclidean space.\\
+Embedding: map points to coordinates and all points affinely independent.\\
+Induced map: $\hat{f}:K\to 2^{\mathbb{R}^d},\{ v_0,v_1,...,v_r\}\mapsto Conv(f(v_0),...,f(v_r))$\\
+All embeddings $f:K\to\mathbb{R}^d,g:K\to\mathbb{R}^{d'}$, $\hat{f}$ and $\hat{g}$ are homeomorphic.\\
+Underlying space, $|K|$, the image of $K$ through embedding, unique up to homeomorphism.\\
+Triangulability: $X$ is triangulable if $\exists K,h:X\to|K|$, $h$ is homeomorphism.\\
+Simplicial map: combinatorial equivalence of continuous map.\\
+Topological realization of a map: simplicial $f:K\to L$ induces continuous $|f|:|K|\to|L|$\\
+Reverse is not necessarily true.\\
+Simplicial Approximation: continuous $f:|K|\to|L|$ is homotopic to $|f'|:|K|\to|L|$, where $f':K'\to L$, for some simplicial subdivision $K'$ of $K$.\\
+Intuition: by dividing the simplicial complex sufficiently many times, we can approximate the topological space.
+\subsection{Simplicial Homology}
+Orientation: Ordering of vertices, unique up to even permutation, negative by odd permutation.
+\subsubsection{Chains}
+$K$ finite simplicial complex and $k$ a fixed field. Given $r\in\mathbb{N}$, we are interested in the $k-$linear combinations (formal sums) of $r-$simplices in $K$.\\
+The linear space of all the formal sums for each $r$ is a chain space of $k-$chains.\\
+Note: Seems that the field $k$ can be relaxed to a ring. Can study later.
+\subsubsection{Boundary Operator}
+Remove one vertex from a simplex, we get a face of the simplex. The linear combination together with interchanging orientation is the boundary.\\
+$\partial_r:C_r(K,k)\to C_{r-1}(K,k)$\\
+$[v_0,...,v_r]\mapsto\sum_{j=0}^{r}(-1)^{j}[v_0,...\hat{v_j}...,v_r]$\\
+Clearly $\partial_r$ is distributive.\\
+Note:$\partial^2=0$, and therefore is nilpotent. (Actually it's $\partial_r\circ\partial_{r+1}=0$.
+\subsubsection{Homology Groups}
+Important motivation: want to find "cycles modulo the boundaries".\\
+Note: need to further think about this.\\
+r-cycles: $Z_r(K,k):=\text{ker}\partial$\\
+r-boundaries: $Z_r(K,k):=\text{im}\partial_{r+1}$\\
+Homology group: $Z_r(K,k)/Z_r(K,k)$
+\subsubsection{Algorithm for Homology}
+Since it's a vector space, it's isomorphic to $k^{\beta_r}$,\\
+Note: when relaxed to ring, it's a module, and therefore we still have the fundamental theorem for modules to decompose to a torsion part and a torsion-free part. Still have some kind of $\beta_r$.\\
+Note: everything is linear space / linear transformation.\\
+Matrix form $M_r$ of $\partial_r$ for each $r$:\\
+$\#K_r$ columns and $\#K_{r-1}$ rows, $\beta_r=\#K_r-\text{rank}M_r-\text{rank}M_{r+1}$, just compute ranks to get the dimension, which I have learned and don't want to go into details.
+\subsubsection{Morphisms}
+Operator on spaces: $H_r:K\mapsto H_r(K,k)$, which we want to extend to maps as well.\\
+Idea of a functor? Some category stuff?\\
+Chain level: simplicial map induces a chain map. Details omitted.\\
+The chain map commutes with boundary operator.\\
+Functoriality: temporarily skipped.
+\subsection{From simplicial complexes to topological spaces}
+Theorem: $X$ triangulable, then, $\forall K,L,H_r(K,k)\simeq H_r(L,k)$.\\
+Conclusion: homology groups of triangulable spaces, and the morphisms between them, are uniquely defined, for different ways of triangulation. Moreover, morphisms are invariant under homotopy.\\
+Corollary: $X\sim Y\implies H_r(X,k)\simeq H_r(Y,k)$.\\
+However, homology does not completely characterize the topology of a space. Thus still much weaker than homeomorphism.
+\subsection{Computation of Persistence Homology}
+This part is largely cited from \cite{Otter2017}.\\
+How to keep track of how one feature "merges" to another?\\
+Boundary matrix: the matrix representation of boundary operator.\\
+We also need a total ordering compatible with the "filtration" in the following sense:
+\begin{itemize}
+	\item a face of a simplex precedes the simplex.
+	\item a simplex in $K_i$ precedes simplices in $K_j$ for $j>i$, and not in $K_i$.
+	\begin{itemize}
+		\item this essentially means that we place the simplices by the order of "appearing".
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Standard Algorithm}
+\begin{itemize}
+	\item Form the boundary matrix from the ordering.
+	\item Reduction, which is essentially Gaussian elimination.
+	\item Reading off intervals.
+	\begin{enumerate}
+		\item some details to do.
+		\item degree: $\text{dg}(\sigma)=\text{smallest number }l\text{ s.t.}\sigma\in K_l$
+		\item pair $(\sigma_i,\sigma_j)$ gives $[\text{dg}(\sigma_i),\text(\sigma_j))$
+		\item unpaired extends to infinity.
+	\end{enumerate}
+	\item Output the barcode, $[\text{dg}(\sigma_i),\text(\sigma_j))$ indicating a feature birth at $\text{dg}(\sigma_i)$ and death at $\text{dg}(\sigma_j)$
+\end{itemize}
+
+\subsubsection{Complexity}
+In the worst case, which does exist, the algorithm has cubic complexity. Note that when sparse, not cubic.
+
+\subsection{Statistical Interpretation}
+\subsubsection{Problems}
+\begin{enumerate}
+	\item Compare outputs with null model.\\
+	How to compare the different results?\\
+	How to evaluate the significance of the data?
+	\item Average over multiple realizations of a random model.
+\end{enumerate}
+\subsubsection{Statistical Analysis}
+Statistical methods for PH addressed first time in \cite{Bubenik2007}. Three approaches.
+\begin{enumerate}
+	\item Topological properties of random simplicial complexes, viewed as null models.
+	\item Properties of a metric space, whose points are persistence diagrams. Key point: define an appropriate distance function between diagrams. The main object is the persistence diagram, which is in some sense isomorphic to a barcode. Wasserstein distance and bottleneck distance are popular ways to defined distance.
+	\item "Features" of persistence diagrams. Key point: map the space of persistence diagrams to analyzable spaces (e.g. Banach spaces). Persistence landscape\cite{Bubenik2015}, using space of algebraic functions\cite{Adcock2013}, kernalized techniques.
+\end{enumerate}
+
+\section{Current Challenges}
+\subsection{Construction of Filtration}
+Except some special data types which have a specific choice of how to construct the filtration, for example, cubical complexes for images, and WRCF for weighted networks. For general point clouds, among the numerous types of comlexes, such as \v Cech, VR, alpha, witness, and etc, which complex is best suited for what, and how to study and characterize such difference?
+\subsection{Statistical Interpretation}
+Two major challenges are described in \cite{Otter2017}.
+\begin{enumerate}
+	\item Quantitatively assessing the quality of the barcodes. Specifically, one cannot just say I'll disregard the "shorter" ones, and the left are the features. How short? What other information can be exploited, e.g. the variation in length?
+	\item The space of barcodes lacks geometric properties to define basic concepts, e.g. mean, median, etc. Current approaches include mapping the space of barcode to a finite metric space, for example, persistent landscape and persistent image. However, more potential can be explored.
+\end{enumerate}
+\subsection{Persistence Diagram}
+Not many tools can be used in applications for computation of Wasserstein / bottleneck distance, and other distance functions between persistence diagrams. Some existing ones include: Dionysus, Hera, TDA Package.
+
+\section{Plan for Next Week}
+I haven't decided on a specific data set to analyze. Among the various fields relevant to TDA/PH, I'm most familiar with and interested in images 2D/3D. Other topics like networks and dynamical systems are also attractive, but I'm afraid I severely lack the knowledge to deal with them. Therefore, I will limit my attention to images, and in particular medical images, which as far as I'm concerned are the most widely studied type of images with PH. To decide on a data set, I plan to first try on relatively small and well-studied benchmark data sets. Many such data sets and benchmarking methodologies are suggested by \cite{Otter2017}. I also found this website \url{digitalpathologyassociation.org/whole-slide-imaging-repository}, which provides an extensive accessible repository of medical images.\par
+
+This week due to certain technical issues, I have not been able to install the PH libraries on my computer. After getting my computer ready, I will try the different libraries and different data sets to see what is the most proper one. Moreover, I plan to read more recent papers on the application and development of PH to keep up with the progress. The 2018 paper \cite{Chittajallu2018} makes use of persistent images, a rather novel technique not seen in many older documents, and achieves interesting results. It makes good sense to try new methods on old problems.\par
+
+In the meantime, I intend to seek more potential of TDA/PH in itself. Most of the papers I read regard TDA/PH as a way to extract features for machine learning. Although this is indeed useful and interesting, I wonder if we could do more than that.
+
+\section{List of Interesting Works}
+\subsection{Introduction and Summary}
+\begin{enumerate}
+	\item \cite{Otter2017} Roadmap for computation of PH, 2017. Thorough review of computation and some theories of PH.
+\end{enumerate}
+\subsection{TDA}
+\begin{enumerate}
+	\item \cite{Carlsson2009} Foundation for TDA. Discusses why topology and functoriality are essential for data analysis.
+	\item \cite{Singh2007} Mapper Algorithm
+	\item \cite{Carlsson2008} The Natural Image paper.
+\end{enumerate}
+\subsubsection{Persistent Homology}
+\begin{enumerate}
+	\item \cite{Mischaikow2013} Discrete Morse theory
+	\item \cite{Bubenik2007} Statistical approach to persistent homology
+\end{enumerate}
+\subsection{Computation}
+\begin{enumerate}
+	\item \cite{Wagner2012} Computation of PH for cubical data, e.g. images
+	\item \cite{Kaczynski2004} Computational homology. In particular, covers cubical complexes and other complexes
+	\item \cite{Javaplex} Javaplex
+	\item \cite{Fasy2014} Intro to R TDA
+	\item \cite{Bubenik2017} Intro of persistence landscapes w/ algorithms.
+\end{enumerate}
+
+\newpage
+\bibliography{Reference}
+\bibliographystyle{ieeetr}
+\end{document}
