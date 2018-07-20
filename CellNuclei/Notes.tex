@@ -7,11 +7,219 @@
 
 \begin{document}
 
-\cite{Chen2013}
+\section{General Notes}
+\subsection{Image}
+\subsubsection{Image Types}
+\begin{enumerate}
+	\item Pathology images
+	\item Fluorescence microscopy
+	\item Confocal images
+	\item H\&E stained cancer images
+\end{enumerate}
+\subsubsection{Microscopy Models}
+\begin{enumerate}
+	\item Bright field
+	\item Fluorescence
+	\item Phase contrast
+\end{enumerate}
+
+\subsection{Random Summary}
+Seems a lot of the problems w/ different models are parameter selection. And usually, we can use some adaptive methods to optimally choose the parameter.\\
+Often, can be converted to optimization problems. And often can be exactly solved using DP like methods.
+
+
+
+
+\section{\cite{Chen2013}}
+
+\section{\cite{Xing2016}}
+
+\subsection{Detection}
+
+\subsubsection{Distance Transform}
+\paragraph{Mechanism}Local maxima = centroids of nuclei or cells. Often paired with "Watershed Segmentation".
+\paragraph{Advantage}
+\paragraph{Disadvantage}Only effective on regular shapes in a binary image. Susceptible to small changes. Complex image $\to$ variations $\to$ over-detection.
+\paragraph{Improvement}Gaussian filter, then trace gradient vector field. Accumulated pixels threshold to distinguish b/w local and non-local maxima.
+\paragraph{Further}Lin et al. gradient weighted-distance transform for 3D fluorescence image.
+
+\subsubsection{Morphology Operation}
+\paragraph{Mechanism}Binary morphological filtering for images w/ certain structure element, circle, square, cross... Examining the geometrical and topological structures of objects w/ predefined shape. Four basic shift-invariant operators:
+\begin{enumerate}
+	\item Erosion
+	\item Dilation
+	\item Opening
+	\item Closing
+\end{enumerate}
+The four can be used to generate more basic morphological operations, boundary, hole, skeletonizing... Binary morphology can be extended to gray-scale morphology. Widely used operators: top-hat, bottom-hat transforms. For example, UE (Ultimate Erosion). Erosion until can't.
+\paragraph{Advantage}Can be used to basic image enhancement, preparing for further analysis. UE: can separate touching or overlapping cells.
+\paragraph{Disadvantage}UE: can produce multiple marker for each cell.
+\paragraph{Improvement}
+\begin{enumerate}
+	\item Improved UE, Park et al. noise robust stopping criterion. Perform until convex. However, binarization.
+	\item Conditional Erosion: Yang et al. Coarse erosion preserves shapes, and fine erosion avoids under-segmentation
+\end{enumerate}
+\paragraph{Further}
+\subparagraph{}Hodneland 3D fluorescence images. Adaptive threshold for ridge extraction, then link gaps.
+\subparagraph{}Plissiti gray-scale, not converting.
+
+\subsubsection{H-minima/maxima Transform}
+\paragraph{Mechanism}
+Based on morphology operation, used in local minima detection. Image $A$, depth value $h$, $H(A,h)=R^{\epsilon}(A+h)$, where $R^{\epsilon}$ is reconstruction by erosion. Some regional minima are suppressed. Initially connected parts can be split in terms of the detected minima, $h$ leads to under/over-segmentation. Usually used to generate markers for watershed transform based segmentation.
+\paragraph{Advantage}
+Compared with DT (EDT), all minima $\to$ H-minima. Very popular in biomedical images.
+\paragraph{Disadvantage}
+Suppress minima, so needs enhancement beforehand. Properly defined $h$ value is needed.
+\paragraph{Improvement}
+\begin{enumerate}
+	\item Adaptive HIT., iteratively increase $h$ until a region merging. Ignores nucleus size.
+	\item Jung and Kim, adaptively choose $h$ to minimize segmentation distortion.
+	\item Variance in cell areas.
+\end{enumerate}
+\paragraph{Further}
+
+\subsubsection{LoG, Laplacian of Gaussian}
+\paragraph{Mechanism}
+In medical image analysis, LoG is one of the most popular for small blobs.
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+\begin{enumerate}
+	\item Might fail in touching / overlapping objects. 
+	\item Scale issue.
+\end{enumerate}
+\paragraph{Improvement}
+\begin{enumerate}
+	\item Lindeberg introduces normalizing factor for multiscale LoG blob detector.
+	\item Kong generalized LoG, for elliptical structures (oblique elliptical Gaussian)
+	\item Hessian analysis to identify optimal scale
+	\item Unsupervised GMM can be used to refine blobs
+	
+\end{enumerate}
+\paragraph{Further}
+
+\subsubsection{Maximally Stable Extremal Regions}
+\paragraph{Mechanism}
+Maximally Stable Extremal Regions. Set of nested extremal regions based on level sets in the intensity landscape. Local intensity minimum-based criterion.
+\begin{enumerate}
+	\item Generate sufficient number of extremal regions.
+	\item Recognize those regions corresponding to real nuclei or cells.
+	\begin{enumerate}
+		\item Eccentricity
+		\item Blob appearance + shape properties
+		\item Arteta formulates an optimization problem, candidates -> scores -> DP for maximal total score
+		\item Multilevel thresholding
+	\end{enumerate}
+\end{enumerate}
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+\paragraph{Improvement}
+\paragraph{Further}
+
+\subsubsection{Hough Transformation}
+\paragraph{Mechanism}
+Circular/elliptical nuclei in pathological images. From $xy$-plane transform to circular $a,b,r$ parameter space. Discrete voting strategy? Most votes corresponding to parameter? Locate the targets by seeking peaks in parameter space (e.g. gradient descent). 
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+False peaks due to noise, incorrect edge extraction, touching objects. Further analysis is needed. 
+\paragraph{Improvement}
+Gaussian smoothing to denoise, morphology operations to reconstruct. SVM classifier. Optimization problem can be solved by some ILP.
+\paragraph{Further}
+\begin{enumerate}
+	\item Can deal with arbitrary shapes. 
+	\item 3D transformation can be done.
+	\item Randomized version
+\end{enumerate}
+
+\subsubsection{Radial Symmetry Based Voting}
+\paragraph{Mechanism}
+Locate the centroids of nuclei or cells. High radial symmetry points highlighted.
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+High computational complexity. False peaks due to clustered nuclei. Radius range. What if not circular?
+\paragraph{Improvement}
+FRST. Candidates, thresholding. Affine transform to deal with non-circular.
+\paragraph{Further}
+
+\subsubsection{SVM}
+
+\subsubsection{Random Forest}
+\subsubsection{DNN, esp. CNN}
+\paragraph{Mechanism}
+
+
+\subparagraph{Ciregan} Mitotic cell detection in breast cancer histology images.
+\begin{enumerate}
+	\item Probability map of being centroid of a mitotic cell.
+	\item Smoothed w/ disk kernel
+	\item Non-maxima suppression
+\end{enumerate}
+Alternatively, can be formulated into an optimization problem.
+\begin{enumerate}
+	\item Candidates by LoG, MSER, iterative voting, etc
+	\item Score by CNN
+	\item Best subset of candidates
+\end{enumerate}
+
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+Computationally expensive for large-scale images.
+\paragraph{Improvement}
+Fast scanning.
+\paragraph{Further}
+
+\subsection{Segmentation}
+Methodologies:
+\begin{enumerate}
+	\item Separate fore and back grounds, and then splits
+	\item Markers, then expand
+	\item Generate candidates, then select
+\end{enumerate}
+Algorithms:
+\begin{enumerate}
+	\item Thresholding
+	\item Morphology Operation
+	\item Watershed transform
+	\item Deformable models
+	\item Clustering
+	\item Graph-based models
+	\item Supervised learning
+\end{enumerate}
+
+\subsubsection{Intensity Thresholding}
+First and simplest method.
+\paragraph{Mechanism}
+Assumption: intensity distributions for fore- and back- grounds are sufficiently and consistently distinct. Convert to binary with global threshold, or locally adaptive threshold. Usually empirical. Can also be some optimization problem. Inter-variance for example. 
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+How to choose threshold
+\paragraph{Improvement}
+Dividing into sub-images. However, introduce other need-to-defined parameters.
+\paragraph{Further}
+Convert RGB to gray-scale, Callau
+
+\subsubsection{Morphology Operation}
+\paragraph{Mechanism}
+Top down erosion and bottom up dilation. Erosion until markers are obtained. Grows the markers w/ dilation to reconstruct, while preventing merging.
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+Under-segmentation in dense cell clumps.
+\paragraph{Improvement}
+Modeling w/ shapes
+\paragraph{Further}
+Always used to facilitate subsequent segmentation.
+
+\subsubsection{Watershed Transformation}
+\paragraph{Mechanism}
+\paragraph{Advantage}
+\paragraph{Disadvantage}
+\paragraph{Improvement}
+\paragraph{Further}
 
 \newpage
 
 \bibliography{Reference}
 \bibliographystyle{ieeetr}
+
+
 
 \end{document}
