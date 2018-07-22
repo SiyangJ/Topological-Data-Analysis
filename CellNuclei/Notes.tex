@@ -27,7 +27,17 @@
 Seems a lot of the problems w/ different models are parameter selection. And usually, we can use some adaptive methods to optimally choose the parameter.\\
 Often, can be converted to optimization problems. And often can be exactly solved using DP like methods.
 
+\subsection{Software}
+\begin{enumerate}
+	\item ImageJ, detection and segmentation
+	\item CellProfiler, quantitative analysis on cell phenotypes.
+\end{enumerate}
 
+\subsection{Challenges}
+\subsubsection{Touching/Overlapping}
+Many extant algorithms depend on datasets. Segmentation w/ shape preserving is very important.
+\subsubsection{Scalability to Large Number}
+Unnecessary to achieve cell segmentation on the whole slide images. But parameter choosing etc. are more accurate if whole image considered.
 
 
 \section{\cite{Chen2013}}
@@ -210,10 +220,51 @@ Always used to facilitate subsequent segmentation.
 
 \subsubsection{Watershed Transformation}
 \paragraph{Mechanism}
+most popular region accumulation method. Seed points, then add pixels. Flood water in the regional minima, while preventing merging building dams. Highest point. Boundaries -> watershed lines, slitting the landscape into regions.
 \paragraph{Advantage}
+Gradient magnitude images, also gray intensity images, distance transform maps, and other gray scale images.
 \paragraph{Disadvantage}
+Over segmentation.
 \paragraph{Improvement}
+Merge false segmentations based on real nuclei or cells.
 \paragraph{Further}
+
+\subsubsection{Deformable Models}
+\paragraph{Mechanism}
+One of the most popular. Pre-specified region, active contour evolves to boundary by minimizing energy functional, achieves segmentation when reaches boundary. $EG(v)=E_{int}(v)+E_{image}(v)+E_{con}(v)$. Internal smoothness, image energy encouraging towards feature, constraint for interaction with user.
+\paragraph{Advantage}
+Great tradeoff b/w efficiency and flexibility. 
+\paragraph{Geodesic Models}
+\paragraph{Parametric Models}
+
+\subsubsection{Clustering}
+\paragraph{Mechanism}
+Different levels of similarity, internal, and outside.  Often followed by edge extraction.
+\begin{enumerate}
+	\item K-means: iterative descent $argmin\sum_{i=1}^{N}\sum_{k=1}^{K}r_{ik}\|x_i-\mu_k\|^2$
+	\item Fuzzy C-means: Not hard as K-means, one object to plural clusters, membership degree.
+	\item Expectation-Maximization: also soft. Mixture of Gaussians: $N(x_i|\mu_k,\Sigma_k)$ Maximize log likelihood over the Gaussian parameters and weights.
+\end{enumerate}
+\paragraph{Disadvantage}
+What metrics to choose, Euclidean distance, correlation, 0-1 error, etc.
+\paragraph{Improvement}
+
+\subsubsection{Graph-Based Methods}
+Model one image as a weighted graph, each node is a pixel, or subpixel, edge weights = similarity b/w pixels. By certain criterion, partitioned into multiple sets, representing segmentation.
+\begin{enumerate}
+	\item Max-flow/Min-cut: Graph-cut algorithm minimizes an energy function. $EG(L)=\sum_{v\in V}D_v(L_v)+\sum_{(v,u)\in N}S_{v,u}(L_v,L_u)$, $N$ penalty plus interaction potential that controls the spatial smoothness.\\
+	Favoring partitioning out small sets of nodes, which are undesired.
+	\item Normalized cut: Avoid unnatural bias. Somehow normalizes the cut.
+	\item Conditional Random Field: Variant of Markov random field, set of random variables represented by a graph.
+	\item Random Walk: graph edge weight represents the likelihood that a random walker will cross the edge.
+\end{enumerate}
+
+\subsubsection{Supervised Learning}
+
+\paragraph{Disadvantage}Pixel-wise usually unable to handle touching objects. Superpixel-wise partitions into set of candidate regions, then discriminates. Highly depends on the superpixels.
+\begin{enumerate}
+	\item 
+\end{enumerate}
 
 \newpage
 
