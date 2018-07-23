@@ -80,11 +80,45 @@ for i=1:n
     
     for j=i+1:n
         
-        
-        
-        distances(i,j) = 
+        d1 = abs(points(i,1)-points(j,1));
+        if d1>0.5
+            d1 = 1-d1;
+        end
+        d2 = abs(points(i,2)-points(j,2));
+        if d2>0.5
+            d2 = 1-d2;
+        end
+        distances(i,j) = sqrt(d1^2+d2^2);
         
     end
     
 end
 
+my_space = metric.impl.ExplicitMetricSpace(distances);
+
+%% Exercise 6
+n = 1000;
+points = rand(n,2);
+distances = zeros(n);
+
+for i=1:n    
+    for j=i+1:n
+        
+        xDiff = abs(points(i, 1) - points(j, 1));
+        yDiff1 = abs(points(i, 2) - points(j, 2));
+        yDiff2 = abs(points(i, 2) - (1 - points(j, 2)));
+        distances(i, j) = min( [norm([xDiff, yDiff1]), norm([xDiff, 1 - yDiff1]), norm([1 - xDiff, yDiff2]), norm([1 - xDiff, 1 - yDiff2])] );
+        distances(j, i) = distances(i, j);
+        
+    end  
+end
+
+my_space = metric.impl.ExplicitMetricSpace(distances);
+
+%% Exercise 7 skipped
+% Key point 1 is to use 3 normal to sample a sphere
+% Key point 2 is to accurately calculate the distance
+
+%% Exercise 8
+
+points = 

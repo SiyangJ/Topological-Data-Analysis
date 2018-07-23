@@ -1,7 +1,6 @@
 % Exercise 8
 
-%% This script demonstrates the Vietoris-Rips complex on the "house with a
-%% garage"
+%% This script demonstrates the Vietoris-Rips complex on the "house with a garage"
 
 clc; clear; close all;
 import edu.stanford.math.plex4.*;
