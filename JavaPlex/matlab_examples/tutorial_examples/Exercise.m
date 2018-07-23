@@ -1,0 +1,97 @@
+%% Exercise 1
+
+clc; clear; close all;
+import edu.stanford.math.plex4.*;
+
+% get a new ExplicitSimplexStream
+stream = api.Plex4.createExplicitSimplexStream();
+
+for i=1:6
+    stream.addVertex(i)
+end
+
+stream.addElement([0,1]);
+stream.addElement([0,2]);
+stream.addElement([1,3]);
+stream.addElement([2,3]);
+stream.addElement([2,4]);
+stream.addElement([2,5]);
+stream.addElement([2,3,4]);
+stream.addElement([4,5]);
+
+stream.finalizeStream();
+
+stream.getSize()
+
+persistence = api.Plex4.getModularSimplicialAlgorithm(3,2);
+
+intervals = persistence.computeIntervals(stream)
+
+%% Exercise 2
+
+clc; clear; close all;
+import edu.stanford.math.plex4.*;
+
+% get a new ExplicitSimplexStream
+stream = api.Plex4.createExplicitSimplexStream();
+
+stream.addElement([1, 2, 7]);
+stream.addElement([2, 7, 8]);
+stream.addElement([2, 3, 8]);
+stream.addElement([3, 8, 9]);
+stream.addElement([1, 3, 9]);
+stream.addElement([1, 7, 9]);
+stream.addElement([4, 7, 8]);
+stream.addElement([4, 5, 8]);
+stream.addElement([5, 8, 9]);
+stream.addElement([5, 6, 9]);
+stream.addElement([6, 7, 9]);
+stream.addElement([4, 6, 7]);
+
+stream.addElement([1, 4, 5]);
+stream.addElement([1, 2, 5]);
+stream.addElement([2, 5, 6]);
+stream.addElement([2, 3, 6]);
+stream.addElement([3, 6, 4]);
+stream.addElement([1, 3, 4]);
+
+stream.ensureAllFaces();
+
+stream.finalizeStream();
+
+stream.getSize()
+
+persistence = api.Plex4.getModularSimplicialAlgorithm(3,2);
+
+intervals = persistence.computeIntervals(stream)
+
+%% Exercise 3&4 omitted
+% It's easy once figuring out the triangulation
+
+%% Exercise 5
+
+n = 1000;
+
+points = rand(n,2);
+
+distances = zeros(n);
+
+for i=1:n
+    
+    for j=i+1:n
+        
+        d1 = abs(points(i,1)-points(j,1));
+        if d1>0.5
+            d1 = 1-d1;
+        end
+        d2 = abs(points(i,2)-points(j,2));
+        if d2>0.5
+            d2 = 1-d2;
+        end
+        distances(i,j) = sqrt(d1^2+d2^2);
+        
+    end
+    
+end
+
+my_space = metric.impl.ExplicitMetricSpace(distances);
