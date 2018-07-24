@@ -7,11 +7,11 @@ clc; clear; close all;
 import edu.stanford.math.plex4.*;
 
 max_dimension = 4;
-max_filtration_value = 2;
+max_filtration_value = 2.1;
 num_divisions = 1000;
 
 % Select n evenly-spaced points from the circle
-n=15;
+n=19;
 point_cloud = [cos(2*pi/n*(0:n-1)'),sin(2*pi/n*(0:n-1)')];
 scatter(point_cloud(:,1),point_cloud(:,2)), axis equal
 
@@ -29,3 +29,9 @@ options.filename = 'ripsCircle';
 options.max_filtration_value = max_filtration_value;
 options.max_dimension = max_dimension - 1;
 plot_barcodes(intervals, options);
+
+%%
+
+% 1,2,3,4,5,6
+% [1,2],[2,3],[3,4],[4,5],[5,6],[6,1]
+% 

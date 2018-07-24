@@ -6,7 +6,7 @@ import edu.stanford.math.plex4.*;
 load pointsRange.mat
 size(pointsRange)
 
-max_dimension = 3;
+max_dimension = 4;
 num_landmark_points = 50;
 nu = 1;
 num_divisions = 1000;
@@ -16,8 +16,16 @@ landmark_selector = api.Plex4.createMaxMinSelector(pointsRange, num_landmark_poi
 R = landmark_selector.getMaxDistanceFromPointsToLandmarks()
 max_filtration_value = R / 3;
 
+
 % create a lazy witness stream
 stream = streams.impl.LazyWitnessStream(landmark_selector.getUnderlyingMetricSpace(), landmark_selector, max_dimension, max_filtration_value, nu, num_divisions);
+
+% max_filtration_value = 3;
+% point_cloud = pointsRange(landmark_selector.getLandmarkPoints() + 1, :);
+% stream = api.Plex4.createVietorisRipsStream(point_cloud, max_dimension, max_filtration_value, num_divisions);
+
+
+
 stream.finalizeStream()
 
 % print out the size of the stream - will be quite large since the complex
@@ -42,4 +50,11 @@ pointsRangeDct = pointsRange * dct(5);
 
 figure;
 scatter(pointsRangeDct(:,1), pointsRangeDct(:,5), '.')
+axis square
+
+%% DCT
+point_cloud_dct = point_cloud * dct(5);
+
+figure;
+scatter(point_cloud_dct(:,1), point_cloud_dct(:,5), '.')
 axis square

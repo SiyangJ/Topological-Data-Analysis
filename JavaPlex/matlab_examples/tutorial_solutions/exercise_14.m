@@ -3,7 +3,7 @@
 clc; clear; close all;
 import edu.stanford.math.plex4.*;
 
-max_dimension = 4;
+max_dimension = 7;
 max_filtration_value = 5;
 num_divisions = 1000;
 

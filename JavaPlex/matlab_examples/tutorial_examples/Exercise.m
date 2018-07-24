@@ -158,11 +158,17 @@ clc; clear; close all;
 import edu.stanford.math.plex4.*;
 
 max_dimension = 3;
-max_filtration_value = 2;
+max_filtration_value = 1.1;
 num_divisions = 1000;
 
+np = 50;
+
 % Select 75 random points from the figure 8 space.
-point_cloud = examples.PointCloudExamples.getRandomFigure8Points(75);
+point_cloud = examples.PointCloudExamples.getRandomFigure8Points(np);
+
+
+point_cloud = point_cloud + 0.5*rand(np,2);
+
 scatter(point_cloud(:,1),point_cloud(:,2)), axis equal
 
 % create a Vietoris-Rips stream 

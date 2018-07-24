@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{Otter2017}
+N.~Otter, M.~A. Porter, U.~Tillmann, P.~Grindrod, and H.~A. Harrington, ``A
+  roadmap for the computation of persistent homology,'' {\em EPJ Data Science},
+  vol.~6, p.~17, Aug 2017.
+
+\bibitem{Javaplex}
+A.~Tausz, M.~Vejdemo-Johansson, and H.~Adams, ``Java{P}lex: {A} research
+  software package for persistent (co)homology,'' in {\em Proceedings of ICMS
+  2014} (H.~Hong and C.~Yap, eds.), Lecture Notes in Computer Science 8592,
+  pp.~129--136, 2014.
+\newblock Software available at
+  \url{http://appliedtopology.github.io/javaplex/}.
+
+\bibitem{Xing2016}
+F.~Xing and L.~Yang, ``Robust nucleus/cell detection and segmentation in
+  digital pathology and microscopy images: A comprehensive review,'' {\em IEEE
+  Reviews in Biomedical Engineering}, vol.~9, pp.~234--263, 2016.
+
+\end{thebibliography}
